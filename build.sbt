@@ -147,7 +147,8 @@ lazy val dockerSettings = Def.settings(
     ExecCmd("RUN", "apt-get", "install", "-y", "sbt"),
     Cmd("WORKDIR", "/opt/docker"),
     Cmd("ADD", "opt", "/opt"),
-    ExecCmd("ENTRYPOINT", "/opt/docker/bin/scala-steward"),
+    ExecCmd("RUN", "mv", "/opt/docker", "/opt/scala-steward"),
+    ExecCmd("ENTRYPOINT", "/opt/scala-steward/bin/scala-steward"),
     ExecCmd("CMD", "")
   )
 )
